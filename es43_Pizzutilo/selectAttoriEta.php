@@ -17,13 +17,11 @@
     $anno_max = $_GET['anno_max'];
     $campo = $_GET['campo'];
 
-    $sql = "SELECT * FROM attori WHERE anno_nascita BETWEEN ? AND ? ORDER BY $campo ASC";
+    $sql = "SELECT * FROM attori WHERE anno_nascita BETWEEN $anno_min AND $anno_max ORDER BY $campo ASC";
 
-    $result = $stmt->get_result();
-    $attori = $result->fetch_all(MYSQLI_ASSOC);
+    $result = mysqli_query($conn, $sql);
 
-    // Controllo se ci sono risultati
-    if (count($attori) > 0) {
+    if ($result > 0) {
         echo "<table border='1'>
                 <thead>
                     <tr>
@@ -35,8 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>";
-
-        foreach ($attori as $attore) {
+        while ($attore = $result) {
             echo "<tr>
                     <td>{$attore['id']}</td>
                     <td>{$attore['nome']}</td>
@@ -45,13 +42,13 @@
                     <td>{$attore['nazionalita']}</td>
                 </tr>";
         }
-
+        
         echo "</tbody></table>";
     } else {
         echo "Nessun attore con anno di nascita compreso tra $anno_min e $anno_max.";
     }
-  
-    $conn->close();
+
+    mysqli_close($conn);
 ?>
     
 </body>
