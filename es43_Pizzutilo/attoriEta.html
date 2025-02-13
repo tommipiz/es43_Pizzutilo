@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerca Attori per anno di nascita</title>
+</head>
+<body>
+    <form action="selectAttoriEta.php" method="GET">
+
+        <p>Inserisci l'anno di nascita min</p>
+        <input type="number" id="anno_min" name="anno_min" required><br><br>
+
+        <p>Inserisci l'anno di nascita massimo</p>
+        <input type="number" id="anno_max" name="anno_max" required><br><br>
+
+        <p>Seleziona un campo per ordinare</p>
+        <select name="campo" id="campo">
+            <option value="nome">Nome</option>
+            <option value="cognome">Cognome</option>
+            <option value="anno_nascita">Anno di nascita</option>
+            <option value="nazionalita">Nazionalità</option>
+        </select><br><br>
+
+        <button type="submit">Invia</button>
+
+    </form>
+    
+</body>
+</html>
